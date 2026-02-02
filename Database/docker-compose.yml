@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      POSTGRES_USER: kpi
+      POSTGRES_PASSWORD: kpiadmin
+      POSTGRES_DB: kpi
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - pg-net
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: sander.verbraekel@solidaris.be
+      PGADMIN_DEFAULT_PASSWORD: kpiadmin
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - pg-net
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  pg-net:
+    driver: bridge
