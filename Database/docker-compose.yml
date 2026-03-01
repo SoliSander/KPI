@@ -17,7 +17,7 @@ services:
     image: dpage/pgadmin4
     container_name: pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: sander.verbraekel@solidaris.be
+      PGADMIN_DEFAULT_EMAIL: email@company.be
       PGADMIN_DEFAULT_PASSWORD: kpiadmin
     volumes:
       - pgadmin_data:/var/lib/pgadmin
