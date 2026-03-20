@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict lW9RyRoG4K22f4dZQHqRf0za8kMGeG0lZCwEyPFcGiW2eSJ1673PSskC3kNjkLL
+\restrict WRcuDMK0EdIW98Ssz2iQJm7rq9aH8BznprgUPfyaKX9xK2LNNt7BrB97idTlHs6
 
 -- Dumped from database version 16.11 (Debian 16.11-1.pgdg13+1)
 -- Dumped by pg_dump version 16.11
 
--- Started on 2026-03-20 09:11:16 UTC
+-- Started on 2026-03-20 09:39:51 UTC
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -20,8 +20,9 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+DROP DATABASE IF EXISTS kpi;
 --
--- TOC entry 3500 (class 1262 OID 16384)
+-- TOC entry 3502 (class 1262 OID 16384)
 -- Name: kpi; Type: DATABASE; Schema: -; Owner: kpi
 --
 
@@ -30,9 +31,9 @@ CREATE DATABASE kpi WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER 
 
 ALTER DATABASE kpi OWNER TO kpi;
 
-\unrestrict lW9RyRoG4K22f4dZQHqRf0za8kMGeG0lZCwEyPFcGiW2eSJ1673PSskC3kNjkLL
+\unrestrict WRcuDMK0EdIW98Ssz2iQJm7rq9aH8BznprgUPfyaKX9xK2LNNt7BrB97idTlHs6
 \connect kpi
-\restrict lW9RyRoG4K22f4dZQHqRf0za8kMGeG0lZCwEyPFcGiW2eSJ1673PSskC3kNjkLL
+\restrict WRcuDMK0EdIW98Ssz2iQJm7rq9aH8BznprgUPfyaKX9xK2LNNt7BrB97idTlHs6
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -273,7 +274,7 @@ CREATE TABLE public.facttable (
 ALTER TABLE public.facttable OWNER TO kpi;
 
 --
--- TOC entry 3480 (class 0 OID 16392)
+-- TOC entry 3482 (class 0 OID 16392)
 -- Dependencies: 215
 -- Data for Name: dimassignee; Type: TABLE DATA; Schema: public; Owner: kpi
 --
@@ -315,7 +316,7 @@ COPY public.dimassignee (id, assignee) FROM stdin;
 
 
 --
--- TOC entry 3482 (class 0 OID 16400)
+-- TOC entry 3484 (class 0 OID 16400)
 -- Dependencies: 217
 -- Data for Name: dimcreator; Type: TABLE DATA; Schema: public; Owner: kpi
 --
@@ -414,7 +415,7 @@ COPY public.dimcreator (id, creator) FROM stdin;
 
 
 --
--- TOC entry 3492 (class 0 OID 32774)
+-- TOC entry 3494 (class 0 OID 32774)
 -- Dependencies: 227
 -- Data for Name: dimepic; Type: TABLE DATA; Schema: public; Owner: kpi
 --
@@ -547,7 +548,7 @@ COPY public.dimepic (id, epic_key) FROM stdin;
 
 
 --
--- TOC entry 3484 (class 0 OID 16408)
+-- TOC entry 3486 (class 0 OID 16408)
 -- Dependencies: 219
 -- Data for Name: dimissuekey; Type: TABLE DATA; Schema: public; Owner: kpi
 --
@@ -3436,7 +3437,7 @@ COPY public.dimissuekey (id, issuekey) FROM stdin;
 
 
 --
--- TOC entry 3481 (class 0 OID 16396)
+-- TOC entry 3483 (class 0 OID 16396)
 -- Dependencies: 216
 -- Data for Name: dimpriority; Type: TABLE DATA; Schema: public; Owner: kpi
 --
@@ -3453,7 +3454,7 @@ COPY public.dimpriority (id, priority) FROM stdin;
 
 
 --
--- TOC entry 3491 (class 0 OID 32769)
+-- TOC entry 3493 (class 0 OID 32769)
 -- Dependencies: 226
 -- Data for Name: dimproject; Type: TABLE DATA; Schema: public; Owner: kpi
 --
@@ -3494,7 +3495,7 @@ COPY public.dimproject (id, project) FROM stdin;
 
 
 --
--- TOC entry 3483 (class 0 OID 16404)
+-- TOC entry 3485 (class 0 OID 16404)
 -- Dependencies: 218
 -- Data for Name: dimstatus; Type: TABLE DATA; Schema: public; Owner: kpi
 --
@@ -3520,7 +3521,7 @@ COPY public.dimstatus (id, status) FROM stdin;
 
 
 --
--- TOC entry 3485 (class 0 OID 16472)
+-- TOC entry 3487 (class 0 OID 16472)
 -- Dependencies: 220
 -- Data for Name: facttable; Type: TABLE DATA; Schema: public; Owner: kpi
 --
@@ -6190,7 +6191,7 @@ COPY public.facttable (issueid, createddate, createdtime, updateddate, updatedti
 
 
 --
--- TOC entry 3501 (class 0 OID 0)
+-- TOC entry 3503 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: dimassignee_index_seq; Type: SEQUENCE SET; Schema: public; Owner: kpi
 --
@@ -6199,7 +6200,7 @@ SELECT pg_catalog.setval('public.dimassignee_index_seq', 3682, true);
 
 
 --
--- TOC entry 3502 (class 0 OID 0)
+-- TOC entry 3504 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: dimcreator_index_seq; Type: SEQUENCE SET; Schema: public; Owner: kpi
 --
@@ -6208,7 +6209,7 @@ SELECT pg_catalog.setval('public.dimcreator_index_seq', 5681, true);
 
 
 --
--- TOC entry 3503 (class 0 OID 0)
+-- TOC entry 3505 (class 0 OID 0)
 -- Dependencies: 228
 -- Name: dimepic_id_seq; Type: SEQUENCE SET; Schema: public; Owner: kpi
 --
@@ -6217,7 +6218,7 @@ SELECT pg_catalog.setval('public.dimepic_id_seq', 3029, true);
 
 
 --
--- TOC entry 3504 (class 0 OID 0)
+-- TOC entry 3506 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: dimissuekey_index_seq; Type: SEQUENCE SET; Schema: public; Owner: kpi
 --
@@ -6226,7 +6227,7 @@ SELECT pg_catalog.setval('public.dimissuekey_index_seq', 5686, true);
 
 
 --
--- TOC entry 3505 (class 0 OID 0)
+-- TOC entry 3507 (class 0 OID 0)
 -- Dependencies: 224
 -- Name: dimpriority_index_seq; Type: SEQUENCE SET; Schema: public; Owner: kpi
 --
@@ -6235,7 +6236,7 @@ SELECT pg_catalog.setval('public.dimpriority_index_seq', 5660, true);
 
 
 --
--- TOC entry 3506 (class 0 OID 0)
+-- TOC entry 3508 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: dimproject_id_seq; Type: SEQUENCE SET; Schema: public; Owner: kpi
 --
@@ -6244,7 +6245,7 @@ SELECT pg_catalog.setval('public.dimproject_id_seq', 3029, true);
 
 
 --
--- TOC entry 3507 (class 0 OID 0)
+-- TOC entry 3509 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: dimstatus_index_seq; Type: SEQUENCE SET; Schema: public; Owner: kpi
 --
@@ -6463,7 +6464,16 @@ ALTER TABLE ONLY public.facttable
 
 
 --
--- TOC entry 3334 (class 2606 OID 16477)
+-- TOC entry 3334 (class 2606 OID 32807)
+-- Name: facttable fk_fact_table_epic; Type: FK CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.facttable
+    ADD CONSTRAINT fk_fact_table_epic FOREIGN KEY (epic) REFERENCES public.dimepic(id);
+
+
+--
+-- TOC entry 3335 (class 2606 OID 16477)
 -- Name: facttable fk_fact_table_issuekey; Type: FK CONSTRAINT; Schema: public; Owner: kpi
 --
 
@@ -6472,7 +6482,7 @@ ALTER TABLE ONLY public.facttable
 
 
 --
--- TOC entry 3335 (class 2606 OID 16492)
+-- TOC entry 3336 (class 2606 OID 16492)
 -- Name: facttable fk_fact_table_priority; Type: FK CONSTRAINT; Schema: public; Owner: kpi
 --
 
@@ -6481,7 +6491,16 @@ ALTER TABLE ONLY public.facttable
 
 
 --
--- TOC entry 3336 (class 2606 OID 16482)
+-- TOC entry 3337 (class 2606 OID 32802)
+-- Name: facttable fk_fact_table_project; Type: FK CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.facttable
+    ADD CONSTRAINT fk_fact_table_project FOREIGN KEY (project) REFERENCES public.dimproject(id);
+
+
+--
+-- TOC entry 3338 (class 2606 OID 16482)
 -- Name: facttable fk_fact_table_status; Type: FK CONSTRAINT; Schema: public; Owner: kpi
 --
 
@@ -6489,11 +6508,11 @@ ALTER TABLE ONLY public.facttable
     ADD CONSTRAINT fk_fact_table_status FOREIGN KEY (status) REFERENCES public.dimstatus(id);
 
 
--- Completed on 2026-03-20 09:11:16 UTC
+-- Completed on 2026-03-20 09:39:51 UTC
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict lW9RyRoG4K22f4dZQHqRf0za8kMGeG0lZCwEyPFcGiW2eSJ1673PSskC3kNjkLL
+\unrestrict WRcuDMK0EdIW98Ssz2iQJm7rq9aH8BznprgUPfyaKX9xK2LNNt7BrB97idTlHs6
 
