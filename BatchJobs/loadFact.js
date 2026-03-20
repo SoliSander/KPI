@@ -24,15 +24,18 @@ async function loadFactTable(rows) {
 
             const issueKey = row[0];
             const issueId = row[1];
-            const status = row[2];
-            const created = row[3];
-            const updated = row[4];
-            const creator = row[5];
-            const originalEstimate = row[6];
-            const priority = row[7];
-            const remainingEstimate = row[8];
-            const timeSpent = row[9];
-            const assignee = row[10];
+            const status = row[3];
+            const created = row[4];
+            const updated = row[5];
+            const creator = row[6];
+            const originalEstimate = row[7];
+            const priority = row[8];
+            const remainingEstimate = row[9];
+            const timeSpent = row[10];
+            const assignee = row[11];
+            const epic = row[27];
+            const project = row[27].split("-")[0];
+            const summary = rows[38];
 
             const issueKeyId = await getDimensionId(client, 'dimissuekey', "issuekey", issueKey);
             const statusId = await getDimensionId(client, 'dimstatus', "status", status);
@@ -52,14 +55,16 @@ async function loadFactTable(rows) {
             const calcRemainingEstimate = normalizeNumber(remainingEstimate);
             const calcTimeSpent = normalizeNumber(timeSpent);
             const assigneeId = await getDimensionId(client, 'dimassignee', "assignee", assignee);
+            const epicId = await getDimensionId(client, 'dimepic', "epic_key", epic);
+            const projectId = await getDimensionId(client, 'dimproject', "project", project);
 
             await client.query(
                 `
                 INSERT INTO facttable(
-	            issueid, createddate, createdtime, updateddate, updatedtime, originalestimate, remainingestimate, issuekey, status, creator, priority, assignee, timespent)
-	            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);
+	            issueid, createddate, createdtime, updateddate, updatedtime, originalestimate, remainingestimate, issuekey, status, creator, priority, assignee, timespent, epic, project, summary)
+	            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16);
                 `,
-                [issueId, createdDate, createdTime, updatedDate, updatedTime, calcOriginalEstimate, calcRemainingEstimate, issueKeyId, statusId, creatorId, priorityId, assigneeId, calcTimeSpent]
+                [issueId, createdDate, createdTime, updatedDate, updatedTime, calcOriginalEstimate, calcRemainingEstimate, issueKeyId, statusId, creatorId, priorityId, assigneeId, calcTimeSpent, epicId, projectId, summary]
             );
         }
         await client.query("COMMIT");
