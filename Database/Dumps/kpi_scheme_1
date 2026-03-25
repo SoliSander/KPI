@@ -1,0 +1,556 @@
+--
+-- PostgreSQL database dump
+--
+
+\restrict N32EpvCGEWgmzJOtmRu1Et996pguB8tvMUCveJFJvmhkKP6JQo6Om6u57WfKoHc
+
+-- Dumped from database version 16.11 (Debian 16.11-1.pgdg13+1)
+-- Dumped by pg_dump version 16.11
+
+-- Started on 2026-03-25 08:52:57 UTC
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 3487 (class 1262 OID 16384)
+-- Name: kpi; Type: DATABASE; Schema: -; Owner: kpi
+--
+
+CREATE DATABASE kpi WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'en_US.utf8';
+
+
+ALTER DATABASE kpi OWNER TO kpi;
+
+\unrestrict N32EpvCGEWgmzJOtmRu1Et996pguB8tvMUCveJFJvmhkKP6JQo6Om6u57WfKoHc
+\connect kpi
+\restrict N32EpvCGEWgmzJOtmRu1Et996pguB8tvMUCveJFJvmhkKP6JQo6Om6u57WfKoHc
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 4 (class 2615 OID 2200)
+-- Name: public; Type: SCHEMA; Schema: -; Owner: pg_database_owner
+--
+
+CREATE SCHEMA public;
+
+
+ALTER SCHEMA public OWNER TO pg_database_owner;
+
+--
+-- TOC entry 3488 (class 0 OID 0)
+-- Dependencies: 4
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 215 (class 1259 OID 16392)
+-- Name: dimassignee; Type: TABLE; Schema: public; Owner: kpi
+--
+
+CREATE TABLE public.dimassignee (
+    id integer NOT NULL,
+    assignee character varying(8)
+);
+
+
+ALTER TABLE public.dimassignee OWNER TO kpi;
+
+--
+-- TOC entry 223 (class 1259 OID 24584)
+-- Name: dimassignee_index_seq; Type: SEQUENCE; Schema: public; Owner: kpi
+--
+
+ALTER TABLE public.dimassignee ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.dimassignee_index_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 217 (class 1259 OID 16400)
+-- Name: dimcreator; Type: TABLE; Schema: public; Owner: kpi
+--
+
+CREATE TABLE public.dimcreator (
+    id integer NOT NULL,
+    creator character varying(8)
+);
+
+
+ALTER TABLE public.dimcreator OWNER TO kpi;
+
+--
+-- TOC entry 222 (class 1259 OID 24583)
+-- Name: dimcreator_index_seq; Type: SEQUENCE; Schema: public; Owner: kpi
+--
+
+ALTER TABLE public.dimcreator ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.dimcreator_index_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 227 (class 1259 OID 32774)
+-- Name: dimepic; Type: TABLE; Schema: public; Owner: kpi
+--
+
+CREATE TABLE public.dimepic (
+    id integer NOT NULL,
+    epic_key character varying(1000) NOT NULL
+);
+
+
+ALTER TABLE public.dimepic OWNER TO kpi;
+
+--
+-- TOC entry 228 (class 1259 OID 32783)
+-- Name: dimepic_id_seq; Type: SEQUENCE; Schema: public; Owner: kpi
+--
+
+ALTER TABLE public.dimepic ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.dimepic_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 219 (class 1259 OID 16408)
+-- Name: dimissuekey; Type: TABLE; Schema: public; Owner: kpi
+--
+
+CREATE TABLE public.dimissuekey (
+    id integer NOT NULL,
+    issuekey character varying(1000)
+);
+
+
+ALTER TABLE public.dimissuekey OWNER TO kpi;
+
+--
+-- TOC entry 221 (class 1259 OID 24582)
+-- Name: dimissuekey_index_seq; Type: SEQUENCE; Schema: public; Owner: kpi
+--
+
+ALTER TABLE public.dimissuekey ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.dimissuekey_index_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 216 (class 1259 OID 16396)
+-- Name: dimpriority; Type: TABLE; Schema: public; Owner: kpi
+--
+
+CREATE TABLE public.dimpriority (
+    id integer NOT NULL,
+    priority character varying(1000)
+);
+
+
+ALTER TABLE public.dimpriority OWNER TO kpi;
+
+--
+-- TOC entry 224 (class 1259 OID 24585)
+-- Name: dimpriority_index_seq; Type: SEQUENCE; Schema: public; Owner: kpi
+--
+
+ALTER TABLE public.dimpriority ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.dimpriority_index_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 226 (class 1259 OID 32769)
+-- Name: dimproject; Type: TABLE; Schema: public; Owner: kpi
+--
+
+CREATE TABLE public.dimproject (
+    id integer NOT NULL,
+    project character varying(1000) NOT NULL
+);
+
+
+ALTER TABLE public.dimproject OWNER TO kpi;
+
+--
+-- TOC entry 229 (class 1259 OID 32784)
+-- Name: dimproject_id_seq; Type: SEQUENCE; Schema: public; Owner: kpi
+--
+
+ALTER TABLE public.dimproject ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.dimproject_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 218 (class 1259 OID 16404)
+-- Name: dimstatus; Type: TABLE; Schema: public; Owner: kpi
+--
+
+CREATE TABLE public.dimstatus (
+    id integer NOT NULL,
+    status character varying(1000)
+);
+
+
+ALTER TABLE public.dimstatus OWNER TO kpi;
+
+--
+-- TOC entry 225 (class 1259 OID 24586)
+-- Name: dimstatus_index_seq; Type: SEQUENCE; Schema: public; Owner: kpi
+--
+
+ALTER TABLE public.dimstatus ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.dimstatus_index_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 220 (class 1259 OID 16472)
+-- Name: facttable; Type: TABLE; Schema: public; Owner: kpi
+--
+
+CREATE TABLE public.facttable (
+    issueid integer NOT NULL,
+    createddate date NOT NULL,
+    createdtime time without time zone NOT NULL,
+    updateddate date,
+    updatedtime time without time zone,
+    originalestimate integer,
+    remainingestimate integer,
+    issuekey integer,
+    status integer,
+    creator integer,
+    priority integer,
+    assignee integer,
+    timespent integer,
+    epic integer,
+    project integer,
+    summary character varying(10000)
+);
+
+
+ALTER TABLE public.facttable OWNER TO kpi;
+
+--
+-- TOC entry 3302 (class 2606 OID 16441)
+-- Name: dimassignee dimassignee_pkey; Type: CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.dimassignee
+    ADD CONSTRAINT dimassignee_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3310 (class 2606 OID 16437)
+-- Name: dimcreator dimcreator_pkey; Type: CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.dimcreator
+    ADD CONSTRAINT dimcreator_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3329 (class 2606 OID 32778)
+-- Name: dimepic dimepic_pkey; Type: CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.dimepic
+    ADD CONSTRAINT dimepic_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3306 (class 2606 OID 16439)
+-- Name: dimpriority dimpriority_pkey; Type: CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.dimpriority
+    ADD CONSTRAINT dimpriority_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3325 (class 2606 OID 32773)
+-- Name: dimproject dimproject_pkey; Type: CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.dimproject
+    ADD CONSTRAINT dimproject_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3314 (class 2606 OID 16435)
+-- Name: dimstatus dimstatus_pkey; Type: CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.dimstatus
+    ADD CONSTRAINT dimstatus_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3322 (class 2606 OID 16476)
+-- Name: facttable facttable_pkey; Type: CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.facttable
+    ADD CONSTRAINT facttable_pkey PRIMARY KEY (issueid);
+
+
+--
+-- TOC entry 3319 (class 2606 OID 16423)
+-- Name: dimissuekey pk_dimissuekey; Type: CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.dimissuekey
+    ADD CONSTRAINT pk_dimissuekey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3303 (class 1259 OID 16395)
+-- Name: idx_dimassignee_index; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE INDEX idx_dimassignee_index ON public.dimassignee USING btree (id);
+
+
+--
+-- TOC entry 3311 (class 1259 OID 16403)
+-- Name: idx_dimcreator_index; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE INDEX idx_dimcreator_index ON public.dimcreator USING btree (id);
+
+
+--
+-- TOC entry 3330 (class 1259 OID 32781)
+-- Name: idx_dimepic_index; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE INDEX idx_dimepic_index ON public.dimepic USING btree (id) WITH (fillfactor='100', deduplicate_items='true');
+
+
+--
+-- TOC entry 3317 (class 1259 OID 16411)
+-- Name: idx_dimissuekey_index; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE INDEX idx_dimissuekey_index ON public.dimissuekey USING btree (id);
+
+
+--
+-- TOC entry 3307 (class 1259 OID 16399)
+-- Name: idx_dimpriority_index; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE INDEX idx_dimpriority_index ON public.dimpriority USING btree (id);
+
+
+--
+-- TOC entry 3326 (class 1259 OID 32779)
+-- Name: idx_dimproject_index; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE INDEX idx_dimproject_index ON public.dimproject USING btree (id) WITH (fillfactor='100', deduplicate_items='true');
+
+
+--
+-- TOC entry 3315 (class 1259 OID 16407)
+-- Name: idx_dimstatus_index; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE INDEX idx_dimstatus_index ON public.dimstatus USING btree (id);
+
+
+--
+-- TOC entry 3323 (class 1259 OID 16502)
+-- Name: idx_fact_table_issue_id; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE INDEX idx_fact_table_issue_id ON public.facttable USING btree (issueid);
+
+
+--
+-- TOC entry 3304 (class 1259 OID 24587)
+-- Name: ux_dimassignee_assignee_ci; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE UNIQUE INDEX ux_dimassignee_assignee_ci ON public.dimassignee USING btree (lower((assignee)::text)) WHERE (assignee IS NOT NULL);
+
+
+--
+-- TOC entry 3312 (class 1259 OID 24588)
+-- Name: ux_dimcreator_creator_ci; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE UNIQUE INDEX ux_dimcreator_creator_ci ON public.dimcreator USING btree (lower((creator)::text)) WHERE (creator IS NOT NULL);
+
+
+--
+-- TOC entry 3331 (class 1259 OID 32799)
+-- Name: ux_dimepic_epic_ci; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE UNIQUE INDEX ux_dimepic_epic_ci ON public.dimepic USING btree (lower((epic_key)::text)) WITH (fillfactor='100', deduplicate_items='true') WHERE (epic_key IS NOT NULL);
+
+
+--
+-- TOC entry 3320 (class 1259 OID 32787)
+-- Name: ux_dimissuekey_issuekey_ci; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE UNIQUE INDEX ux_dimissuekey_issuekey_ci ON public.dimissuekey USING btree (lower((issuekey)::text)) WHERE (issuekey IS NOT NULL);
+
+
+--
+-- TOC entry 3308 (class 1259 OID 32796)
+-- Name: ux_dimpriority_priority_ci; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE UNIQUE INDEX ux_dimpriority_priority_ci ON public.dimpriority USING btree (lower((priority)::text)) WHERE (priority IS NOT NULL);
+
+
+--
+-- TOC entry 3327 (class 1259 OID 32793)
+-- Name: ux_dimproject_project_ci; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE UNIQUE INDEX ux_dimproject_project_ci ON public.dimproject USING btree (lower((project)::text)) WITH (fillfactor='100', deduplicate_items='true') WHERE (project IS NOT NULL);
+
+
+--
+-- TOC entry 3316 (class 1259 OID 32790)
+-- Name: ux_dimstatus_status_ci; Type: INDEX; Schema: public; Owner: kpi
+--
+
+CREATE UNIQUE INDEX ux_dimstatus_status_ci ON public.dimstatus USING btree (lower((status)::text)) WHERE (status IS NOT NULL);
+
+
+--
+-- TOC entry 3332 (class 2606 OID 16497)
+-- Name: facttable fk_fact_table_assignee; Type: FK CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.facttable
+    ADD CONSTRAINT fk_fact_table_assignee FOREIGN KEY (assignee) REFERENCES public.dimassignee(id);
+
+
+--
+-- TOC entry 3333 (class 2606 OID 16487)
+-- Name: facttable fk_fact_table_creator; Type: FK CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.facttable
+    ADD CONSTRAINT fk_fact_table_creator FOREIGN KEY (creator) REFERENCES public.dimcreator(id);
+
+
+--
+-- TOC entry 3334 (class 2606 OID 32807)
+-- Name: facttable fk_fact_table_epic; Type: FK CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.facttable
+    ADD CONSTRAINT fk_fact_table_epic FOREIGN KEY (epic) REFERENCES public.dimepic(id);
+
+
+--
+-- TOC entry 3335 (class 2606 OID 16477)
+-- Name: facttable fk_fact_table_issuekey; Type: FK CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.facttable
+    ADD CONSTRAINT fk_fact_table_issuekey FOREIGN KEY (issuekey) REFERENCES public.dimissuekey(id);
+
+
+--
+-- TOC entry 3336 (class 2606 OID 16492)
+-- Name: facttable fk_fact_table_priority; Type: FK CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.facttable
+    ADD CONSTRAINT fk_fact_table_priority FOREIGN KEY (priority) REFERENCES public.dimpriority(id);
+
+
+--
+-- TOC entry 3337 (class 2606 OID 32802)
+-- Name: facttable fk_fact_table_project; Type: FK CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.facttable
+    ADD CONSTRAINT fk_fact_table_project FOREIGN KEY (project) REFERENCES public.dimproject(id);
+
+
+--
+-- TOC entry 3338 (class 2606 OID 16482)
+-- Name: facttable fk_fact_table_status; Type: FK CONSTRAINT; Schema: public; Owner: kpi
+--
+
+ALTER TABLE ONLY public.facttable
+    ADD CONSTRAINT fk_fact_table_status FOREIGN KEY (status) REFERENCES public.dimstatus(id);
+
+
+-- Completed on 2026-03-25 08:52:57 UTC
+
+--
+-- PostgreSQL database dump complete
+--
+
+\unrestrict N32EpvCGEWgmzJOtmRu1Et996pguB8tvMUCveJFJvmhkKP6JQo6Om6u57WfKoHc
+
