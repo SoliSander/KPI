@@ -34,7 +34,7 @@ async function loadFactTable(rows) {
             const timeSpent = row[10];
             const assignee = row[11];
             const epic = row[27];
-            const project = row[27].split("-")[0];
+            const project = row[0].split("-")[0];
             const summary = row[38];
             const tickettype = row[39];
             const resolved = row[40];
