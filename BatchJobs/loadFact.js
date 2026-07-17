@@ -35,7 +35,9 @@ async function loadFactTable(rows) {
             const assignee = row[11];
             const epic = row[27];
             const project = row[27].split("-")[0];
-            const summary = rows[38];
+            const summary = row[38];
+            const tickettype = row[39];
+            const resolved = row[40];
 
             const issueKeyId = await getDimensionId(client, 'dimissuekey', "issuekey", issueKey);
             const statusId = await getDimensionId(client, 'dimstatus', "status", status);
@@ -57,14 +59,20 @@ async function loadFactTable(rows) {
             const assigneeId = await getDimensionId(client, 'dimassignee', "assignee", assignee);
             const epicId = await getDimensionId(client, 'dimepic', "epic_key", epic);
             const projectId = await getDimensionId(client, 'dimproject', "project", project);
+            const typeId = await getDimensionId(client, 'dimtickettype', "ticket_type", tickettype);
+            [datePart, timePart] = resolved.split(" ");
+            [day, month, year] = datePart.split("/");
+            [hour, minute] = timePart.split(":")
+            const resolvedDate = `${year}-${month}-${day}`;
+            const resolvedTime = `${hour}:${minute}:00`;
 
             await client.query(
                 `
                 INSERT INTO facttable(
-	            issueid, createddate, createdtime, updateddate, updatedtime, originalestimate, remainingestimate, issuekey, status, creator, priority, assignee, timespent, epic, project, summary)
-	            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16);
+	            issueid, createddate, createdtime, updateddate, updatedtime, originalestimate, remainingestimate, issuekey, status, creator, priority, assignee, timespent, epic, project, summary, ticket_type, resolveddate, resolvedtme)
+	            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);
                 `,
-                [issueId, createdDate, createdTime, updatedDate, updatedTime, calcOriginalEstimate, calcRemainingEstimate, issueKeyId, statusId, creatorId, priorityId, assigneeId, calcTimeSpent, epicId, projectId, summary]
+                [issueId, createdDate, createdTime, updatedDate, updatedTime, calcOriginalEstimate, calcRemainingEstimate, issueKeyId, statusId, creatorId, priorityId, assigneeId, calcTimeSpent, epicId, projectId, summary, tickettype, resolvedDate, resolvedTime]
             );
         }
         await client.query("COMMIT");

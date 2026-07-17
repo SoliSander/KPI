@@ -28,10 +28,10 @@ const input = fs.readFileSync(inputFile, "utf8");
 let rows = parse(input, {
     delimiter: ",",
     relax_column_count: true,
-    from_line: 2
+    from_line: 1
 });
 
-loadFactTable(rows)
+/*loadFactTable(rows)
     .then(() => {
         console.log("Fact table loaded!");
         process.exit(0);
@@ -39,4 +39,6 @@ loadFactTable(rows)
     .catch((err) => {
         console.error(err);
         process.exit(1);
-    });
+    });*/
+
+console.log(rows[0]);
