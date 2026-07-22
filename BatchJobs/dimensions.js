@@ -20,7 +20,14 @@ async function getDimensionId(client, table, column, value) {
     RETURNING id
   `;
 
-  const res = await client.query(sql, [clean]);
+  try {
+    const res = await client.query(sql, [clean]);
+    return res.rows[0].id;
+  } catch (err) {
+    console.error(`FAILED: table=${table}, column=${column}, value=${clean}`);
+    throw err;
+  }
+
 
   if (res.rows.length === 0) {
     throw new Error(

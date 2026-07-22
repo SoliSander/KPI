@@ -41,4 +41,4 @@ let rows = parse(input, {
         process.exit(1);
     });*/
 
-console.log(rows[0]);
+console.log(rows[1]);
